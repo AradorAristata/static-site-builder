@@ -1,11 +1,33 @@
-from textnode import TextNode, TextType
-from stringhandler import split_nodes_delimiter, extract_markdown_images, extract_markdown_links, split_nodes_image, split_nodes_links, text_to_textnodes
+import os
+import shutil
+
+def copy_contents():
+    src_dir = os.path.join(os.path.dirname(__file__), "../static")
+    dst_dir = os.path.join(os.path.dirname(__file__), "../public")
+   ##delete all files and folders in the destination directory and log the deletes
+    for filename in os.listdir(dst_dir):
+        file_path = os.path.join(dst_dir, filename)
+        if os.path.isfile(file_path) or os.path.islink(file_path):
+            os.unlink(file_path)
+            print(f"Deleted file: {file_path}")
+        elif os.path.isdir(file_path):
+            shutil.rmtree(file_path)
+            print(f"Deleted directory: {file_path}")
+
+    #copy all files and folders from the source directory to the destination directory and log each copy
+    for filename in os.listdir(src_dir):
+        src_file_path = os.path.join(src_dir, filename)
+        dst_file_path = os.path.join(dst_dir, filename)
+        if os.path.isfile(src_file_path):
+            shutil.copy2(src_file_path, dst_file_path)
+            print(f"Copied file: {src_file_path} to {dst_file_path}")
+        elif os.path.isdir(src_file_path):
+            shutil.copytree(src_file_path, dst_file_path)
+            print(f"Copied directory: {src_file_path} to {dst_file_path}")
+
 
 
 def main():
-    text = "This is **text** with an _italic_ word and a `code block` and an ![obi wan image](https://i.imgur.com/fJRm4Vk.jpeg) and a [link](https://boot.dev)"
-    new_nodes = text_to_textnodes(text)
-    for new_node in new_nodes:
-        print(new_node)
+    copy_contents()
 
 main()
