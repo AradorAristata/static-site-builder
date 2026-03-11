@@ -1,9 +1,7 @@
 from blockhandler import BlockType, markdown_to_blocks, block_to_block_type
-from htmlnode import HTMLNode
 from parentnode import ParentNode
 from textnode import TextNode, TextType, text_node_to_html_node
-from leafnode import LeafNode
-from stringhandler import split_nodes_delimiter, split_nodes_image, extract_markdown_images, extract_markdown_links, text_to_textnodes
+from stringhandler import text_to_textnodes
 
 def text_to_children(text):
     text_nodes = text_to_textnodes(text)

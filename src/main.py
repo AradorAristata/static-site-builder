@@ -1,5 +1,6 @@
 import os
 import shutil
+from generator import generate_pages_recursive
 
 def copy_contents():
     src_dir = os.path.join(os.path.dirname(__file__), "../static")
@@ -29,5 +30,6 @@ def copy_contents():
 
 def main():
     copy_contents()
+    generate_pages_recursive("../content", "../template.html", "../public")
 
 main()

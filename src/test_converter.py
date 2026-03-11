@@ -1,6 +1,5 @@
-from platform import node
 import unittest
-from converter import markdown_to_html_node, quote_to_html_node
+from converter import markdown_to_html_node
 
 
 class TestConverter(unittest.TestCase):
