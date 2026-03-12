@@ -1,10 +1,11 @@
 import os
+import sys
 import shutil
 from generator import generate_pages_recursive
 
 def copy_contents():
     src_dir = os.path.join(os.path.dirname(__file__), "../static")
-    dst_dir = os.path.join(os.path.dirname(__file__), "../public")
+    dst_dir = os.path.join(os.path.dirname(__file__), "../docs")
    ##delete all files and folders in the destination directory and log the deletes
     for filename in os.listdir(dst_dir):
         file_path = os.path.join(dst_dir, filename)
@@ -29,7 +30,10 @@ def copy_contents():
 
 
 def main():
+    #grab basepath from first argument. If none provided, use none. Log the basepath being used.
+    basepath = sys.argv[1] if len(sys.argv) > 1 else ""
+    print(f"#####Running static site builder from {basepath}")
     copy_contents()
-    generate_pages_recursive("content", "template.html", "public")
+    generate_pages_recursive("content", "template.html", "docs", basepath)
 
 main()
