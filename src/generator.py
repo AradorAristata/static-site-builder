@@ -26,6 +26,7 @@ def generate_page(from_path, template_path, dest_path):
         f.write(page_content)
 
 def generate_pages_recursive(dir_path_content, template_path, dir_path_dest):
+    print(f"This script is in directory: {os.path.dirname(__file__)}")
     for entry in os.listdir(dir_path_content):
         content_entry_path = os.path.join(dir_path_content, entry)
         dest_entry_path = os.path.join(dir_path_dest, entry.replace('.md', '.html'))

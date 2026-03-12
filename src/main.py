@@ -30,6 +30,6 @@ def copy_contents():
 
 def main():
     copy_contents()
-    generate_pages_recursive("../content", "../template.html", "../public")
+    generate_pages_recursive("content", "template.html", "public")
 
 main()
